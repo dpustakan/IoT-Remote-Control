@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">IoT</string>
+    <string name="greetings">Current\nTemperature</string>
+    <string name="new_control">New Control</string>
+    <string name="control">Control Appliance</string>
+    <string name="temperature">0\u00B0</string>
+    <string name="new_control_status">Waiting for signal...</string>
+    <string name="save">Save</string>
+    <string name="send">Send</string>
+</resources>
