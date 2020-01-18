@@ -33,7 +33,7 @@ public class NewControl extends AppCompatActivity {
 
         signalStatus = (TextView) findViewById(R.id.signal_status_textview);
         commandName = (TextView) findViewById(R.id.command_name_textview);
-        getMqttMessage();
+        getSignalData();
 
         Button newControl = (Button) findViewById(R.id.save_data_btn);
         newControl.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +55,8 @@ public class NewControl extends AppCompatActivity {
         });
     }
 
-    private void getMqttMessage(){
+    private void getSignalData(){
         mqttHelper = new MQTTHelper(getApplicationContext());
-        mqttHelper.connectToSubscribe();
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {

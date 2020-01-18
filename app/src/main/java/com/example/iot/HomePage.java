@@ -2,9 +2,7 @@ package com.example.iot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +15,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import helpers.MQTTHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePage extends AppCompatActivity {
 
     //SQLiteDatabase sqLiteDatabaseObj;
     MQTTHelper mqttHelper;
@@ -32,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         //SQLiteTableBuild();
 
         tempHumid = (TextView) findViewById(R.id.temperature_textview);
-        subscribeMqtt();
+        getTemperatureData();
 
         Button newControl = (Button) findViewById(R.id.new_control_btn);
         newControl.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent newControlAct = new Intent(MainActivity.this , NewControl.class);
+                Intent newControlAct = new Intent(HomePage.this , NewControl.class);
                 startActivity(newControlAct);
             }
         });
@@ -45,19 +43,17 @@ public class MainActivity extends AppCompatActivity {
         Button sendCommand = (Button) findViewById(R.id.send_activity_btn);
         sendCommand.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent sendCommandAct = new Intent(MainActivity.this , SendCommand.class);
+                Intent sendCommandAct = new Intent(HomePage.this , SendCommand.class);
                 startActivity(sendCommandAct);
             }
         });
     }
 
-    private void subscribeMqtt(){
+    private void getTemperatureData(){
         mqttHelper = new MQTTHelper(getApplicationContext());
-        mqttHelper.connectToSubscribe();
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean reconnect, String serverURI) {
-
 
             }
 

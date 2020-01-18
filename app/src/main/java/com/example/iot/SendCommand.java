@@ -33,6 +33,7 @@ public class SendCommand extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_command);
 
+        mqttHelper = new MQTTHelper(getApplicationContext());
         myDatabase = new DatabaseHelper(this);
         commandList = (Spinner) findViewById(R.id.command_list);
         sendCommand = (Button)findViewById(R.id.send_command_btn);
@@ -57,10 +58,7 @@ public class SendCommand extends AppCompatActivity {
             public void onClick(View v) {
                 //get data of selected position
                 String data = (String) commandData.get(commandList.getSelectedItemPosition());
-
-                mqttHelper = new MQTTHelper(getApplicationContext());
-                mqttHelper.connectToPublishMessage("inTopic", data);
-
+                mqttHelper.PublishMessage("inTopic", data);
                 mqttHelper.setCallback(new MqttCallbackExtended() {
                     @Override
                     public void connectComplete(boolean reconnect, String serverURI) {

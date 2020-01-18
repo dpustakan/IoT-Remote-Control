@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SendCommand"></activity>
         <activity android:name=".NewControl" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
